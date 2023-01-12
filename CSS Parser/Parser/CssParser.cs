@@ -523,12 +523,30 @@ namespace JoCssParser.Parser {
 
 		/// <summary>
 		/// Just an Alias to GetTags(),
-		/// to that this API uses CSS Wording
+		/// so that this API uses CSS Wording
 		/// </summary>
 		/// <returns></returns>
 		public List<string> GetCssSelectors() {
 			return GetTags();
 		}
+
+		/// <summary>
+		/// Just an Alias to TagExist(),
+		/// so that this API uses CSS Wording
+		/// </summary>
+		/// <param name="Tag"></param>
+		/// <returns></returns>
+		public bool CssSelectorsExist(string cssSelectors) {
+			return TagExist(cssSelectors);
+		}
+
+		/// <summary>
+		/// Just an Alias to TagExist(),
+		/// so that this API uses CSS Wording
+		/// </summary>
+		/// <param name="cssSelectors"></param>
+		/// <returns></returns>
+		public bool CssSelectorsExist(Tag tag) { return TagExist(tag); }
 
 	}
 
