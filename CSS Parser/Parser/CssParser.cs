@@ -536,7 +536,7 @@ namespace JoCssParser.Parser {
 		/// </summary>
 		/// <param name="Tag"></param>
 		/// <returns></returns>
-		public bool CssSelectorsExist(string cssSelectors) {
+		public bool CssSelectorExist(string cssSelectors) {
 			return TagExist(cssSelectors);
 		}
 
@@ -546,7 +546,7 @@ namespace JoCssParser.Parser {
 		/// </summary>
 		/// <param name="cssSelectors"></param>
 		/// <returns></returns>
-		public bool CssSelectorsExist(Tag tag) { return TagExist(tag); }
+		public bool CssSelectorExist(Tag tag) { return TagExist(tag); }
 
 	}
 
