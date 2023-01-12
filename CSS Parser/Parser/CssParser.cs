@@ -193,10 +193,6 @@ namespace JoCssParser.Parser {
 			string ToRreturn = string.Empty;
 
 			foreach (TagWithCSS T in TagWithCSSList) {
-#if DEBUG
-				// CSS Comments: https://developer.mozilla.org/en-US/docs/Web/CSS/Comments
-				ToRreturn += $"/* {T.TagName} */\n";
-#endif
 				ToRreturn += T.TagName;
 				ToRreturn += "\n{\n";
 
