@@ -521,6 +521,14 @@ namespace JoCssParser.Parser {
 			return TagWithCSSList.Select(x => x.TagName).ToList();
 		}
 
+		/// <summary>
+		/// Just an Alias to GetTags(),
+		/// to that this API uses CSS Wording
+		/// </summary>
+		/// <returns></returns>
+		public List<string> GetCssSelectors() {
+			return GetTags();
+		}
 
 	}
 
