@@ -19,7 +19,7 @@ namespace JoCssParser
     /// Saves a CSS Selector
     /// and its CSS Declaration Block
     /// </summary>
-    struct TagWithCSS
+    public struct TagWithCSS
     {
         // In fact, this is the CSS Selector of a CSS Rule Set  
         public string TagName;

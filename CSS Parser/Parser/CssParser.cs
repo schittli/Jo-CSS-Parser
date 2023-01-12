@@ -23,7 +23,7 @@ namespace JoCssParser.Parser {
 		List<TagWithCSS> TagWithCSSList;
 
 
-		List<TagWithCSS> GetTagWithCSS(string input) {
+		List<TagWithCSS> AddTagWithCSS(string input) {
 			List<TagWithCSS> TagWithCSSList = new List<TagWithCSS>();
 			List<string>     IndividualTag  = IndividualTags(input);
 
@@ -211,7 +211,7 @@ namespace JoCssParser.Parser {
 		[DefaultValue(typeof(string), "")]
 		[Description("Set and return Css Code.")]
 		public string Css {
-			set { TagWithCSSList = GetTagWithCSS(value); }
+			set { TagWithCSSList = AddTagWithCSS(value); }
 			get { return this.ToString(); }
 		}
 
@@ -260,9 +260,9 @@ namespace JoCssParser.Parser {
 
 
 		/// <summary>
-		/// Remove Tag and it's properties.
+		/// Remove tag and it's properties.
 		/// </summary>
-		/// <param name="Tag">Tag to remove.</param>
+		/// <param name="Tag">tag to remove.</param>
 		/// <returns>True if removed.</returns>
 		public bool RemoveTag(string Tag) {
 			if (Tag == ""
@@ -283,9 +283,9 @@ namespace JoCssParser.Parser {
 
 
 		/// <summary>
-		/// Remove Tag and it's properties.
+		/// Remove tag and it's properties.
 		/// </summary>
-		/// <param name="Tag">Tag to remove.</param>
+		/// <param name="Tag">tag to remove.</param>
 		/// <returns>True if removed.</returns>
 		public bool RemoveTag(Tag tag) {
 			string _ = this.tag[tag];
@@ -296,7 +296,7 @@ namespace JoCssParser.Parser {
 		/// <summary>
 		/// Get list of properties on tag.
 		/// </summary>
-		/// <param name="Tag">Tag to get properties</param>
+		/// <param name="Tag">tag to get properties</param>
 		/// <returns>Property List</returns>
 		public List<Property> GetProperties(string Tag) {
 			if (Tag == ""
@@ -318,7 +318,7 @@ namespace JoCssParser.Parser {
 		/// <summary>
 		/// Get list of properties on tag.
 		/// </summary>
-		/// <param name="Tag">Tag to get properties</param>
+		/// <param name="Tag">tag to get properties</param>
 		/// <returns>Property List</returns>
 		public List<Property> GetProperties(Tag tag) {
 			string _ = this.tag[tag];
@@ -367,10 +367,10 @@ namespace JoCssParser.Parser {
 		/// <summary>
 		/// Add/Overwrite property or property's value of tag.  
 		/// </summary>
-		/// <param name="Tag">Tag name.</param>
+		/// <param name="Tag">tag name.</param>
 		/// <param name="property">Property to add/overwrite</param>
 		/// <param name="PropertValue">Property's valueto add/overwrite</param>
-		/// <param name="Type">Type of tag (HTML tag ,Class or Id).Deffalt HTML Tag.</param>
+		/// <param name="Type">Type of tag (HTML tag ,Class or Id).Deffalt HTML tag.</param>
 		/// <returns>Added/Overwrited or not.</returns>
 		public bool AddPropery(string Tag, CssProperty property, string PropertValue, TagType Type = TagType.Tag) {
 			if (Tag == ""
@@ -447,10 +447,10 @@ namespace JoCssParser.Parser {
 		/// <summary>
 		/// Add/Overwrite property or property's value of tag.  
 		/// </summary>
-		/// <param name="Tag">Tag name.</param>
+		/// <param name="Tag">tag name.</param>
 		/// <param name="property">Property to add/overwrite</param>
 		/// <param name="PropertValue">Property's valueto add/overwrite</param>
-		/// <param name="Type">Type of tag (HTML tag ,Class or Id).Deffalt HTML Tag.</param>
+		/// <param name="Type">Type of tag (HTML tag ,Class or Id).Deffalt HTML tag.</param>
 		/// <returns>Added/Overwrited or not.</returns>
 		public bool AddPropery(Tag tag, CssProperty property, string PropertValue) {
 			string _ = this.tag[tag];
@@ -478,20 +478,35 @@ namespace JoCssParser.Parser {
 			TagWithCSSList = new List<TagWithCSS>();
 		}
 
+		/// <summary>
+		/// Gets the TagWithCSS
+		/// </summary>
+		/// <param name="tag">Name of tag.</param>
+		/// <returns>True if exist.</returns>
+		public TagWithCSS? GetTagWithCSS(string tag) {
+			if (!tag.ØHasValue())
+				throw new NULL_TAG();
+
+			foreach (TagWithCSS T in TagWithCSSList) {
+				if (T.TagName.Equals(tag, StringComparison.InvariantCultureIgnoreCase)) {
+					return T;
+				}
+			}
+			return null;
+		}
+
 
 		/// <summary>
 		/// Check the existance of tag.
 		/// </summary>
-		/// <param name="Tag">Name of tag.</param>
+		/// <param name="tag">Name of tag.</param>
 		/// <returns>True if exist.</returns>
-		public bool TagExist(string Tag) {
-			if (Tag == ""
-			    || Tag == string.Empty
-			    || Tag == "")
+		public bool TagExist(string tag) {
+			if (!tag.ØHasValue())
 				throw new NULL_TAG();
 
 			foreach (TagWithCSS T in TagWithCSSList) {
-				if (T.TagName.Equals(Tag, StringComparison.InvariantCultureIgnoreCase)) {
+				if (T.TagName.Equals(tag, StringComparison.InvariantCultureIgnoreCase)) {
 					return true;
 				}
 			}
