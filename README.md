@@ -46,8 +46,7 @@ That's why I split this function:
 2. Parse all found CSS RuleSets
 
 
-This is a CSS RuleSet:
-
+Just to be sure we use the same naming: This is a CSS RuleSet:
 
 ```
 h1 {
