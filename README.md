@@ -1,12 +1,75 @@
+
+
 # Jo-CSS-Parser
+
 Complete Css Parser Writen in C#
 
-MIT License Copyright © 2016 Muhammad Rizwan.
 
-All rights reserved.
+# Updates
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+## 230112, by Tom
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+### Renamed: GetPropertie to GetProperty:
+	
+		Old
+			public Property GetPropertie(string Tag, CssProperty Property)
+		New
+			public Property GetProperty(string Tag, CssProperty Property)
+			
+		Old
+			public Property GetPropertie(Tag tag, CssProperty Property)
+		New
+			public Property GetProperty(Tag tag, CssProperty Property)
+		
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+### CssParser: Parser for CSS RuleSet
+
+
+Jo-CSS-Parser has a big issue:
+When calling the following code, it may happen that Regex.Matches() takes forever (or *very*) long to find a result:
+
+
+```
+string pattern = @"(?<selector>(?:(?:[^,{]+),?)*?)\{(?:(?<name>[^}:]+):?(?<value>[^};]+);?)*?\}";
+
+List<string> b = new List<string>();
+
+foreach (Match m in Regex.Matches(input, pattern)) {
+		b.Add(m.Value);
+}
+```
+
+
+That's why I split this function:
+
+1. Find all CSS RuleSets
+2. Parse all found CSS RuleSets
+
+
+This is a CSS RuleSet:
+
+
+```
+h1 {
+		color: green;
+}
+/* Selector */
+p:first-child{ 
+		 
+		/* Declaration-block */
+		background-color: green;
+		color: white;
+		font-size: 15px;
+		border-radius: 50px        
+		;
+		text-transform: uppercase                
+		;
+		font-weight: bold;
+}
+
+body {
+		text-align: center;
+}
+```				
+
+

@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace JoCssParser
+
+namespace JoCssParser.Parser
 {
     /// <summary>
     /// Parser css code to add/remove or manage it.
@@ -23,8 +24,8 @@ namespace JoCssParser
         List<TagWithCSS> GetTagWithCSS(string input)
         {
             List<TagWithCSS> TagWithCSSList = new List<TagWithCSS>();
-            List<string> IndivisualTag = IndivisualTags(input);
-            foreach (string tag in IndivisualTag)
+            List<string> IndividualTag = IndividualTags(input);
+            foreach (string tag in IndividualTag)
             {
                 string[] tagname = Regex.Split(tag, @"[{]");
                 TagWithCSS TWCSS = new TagWithCSS();
@@ -51,14 +52,19 @@ namespace JoCssParser
                 return null;
             }
         }
-        List<string> IndivisualTags(string input)
-        {
-            string pattern = @"(?<selector>(?:(?:[^,{]+),?)*?)\{(?:(?<name>[^}:]+):?(?<value>[^};]+);?)*?\}";
+        List<string> IndividualTags(string input) {
+            string       pattern = @"(?<selector>(?:(?:[^,{]+),?)*?)\{(?:(?<name>[^}:]+):?(?<value>[^};]+);?)*?\}";
+            List<string> b       = new List<string>();
+            
+            // Get all CSSRuleSets
+            List<string> cssRuleSets = CSSRuleSetParser.ParseCSSRuleSets(input);
 
-            List<string> b = new List<string>();
-
-            foreach (Match m in Regex.Matches(input, pattern))
-                b.Add(m.Value);
+            // Parse each cssRuleSet
+            foreach (var cssRuleSet in cssRuleSets) {
+                foreach (Match m in Regex.Matches(cssRuleSet, pattern)) {
+                    b.Add(m.Value);
+                }
+            }
 
             return b;
         }
@@ -310,7 +316,7 @@ namespace JoCssParser
         /// <param name="Tag">Name of tag.</param>
         /// <param name="Property">Property to value.</param>
         /// <returns>Property</returns>
-        public Property GetPropertie(string Tag, CssProperty Property)
+        public Property GetProperty(string Tag, CssProperty Property)
         {
             if (Tag == "" || Tag == string.Empty || Tag == "")
                 throw new NULL_TAG();
@@ -336,11 +342,12 @@ namespace JoCssParser
         /// <param name="Tag">Name of tag.</param>
         /// <param name="Property">Property to value.</param>
         /// <returns>Property</returns>
-        public Property GetPropertie(Tag tag, CssProperty Property)
+        public Property GetProperty(Tag tag, CssProperty Property)
         {
             string _ = this.tag[tag];
-            return GetPropertie(_, Property);
+            return GetProperty(_, Property);
         }
+
         /// <summary>
         /// Add/Overwrite property or property's value of tag.  
         /// </summary>

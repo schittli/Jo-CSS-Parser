@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jo CSS Parser", "CSS Parser\Jo CSS Parser.csproj", "{419710A5-5F35-4998-A0BE-52BEA85884AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser Test", "Parser Test\Parser Test.csproj", "{838D75D0-FE6A-458D-B40F-6BFFC116335F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jo CSS Parser UnitTests", "Jo CSS Parser UnitTests\Jo CSS Parser UnitTests.csproj", "{58F8FF1A-5FF5-401E-80A1-A27D59E44E05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{838D75D0-FE6A-458D-B40F-6BFFC116335F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{838D75D0-FE6A-458D-B40F-6BFFC116335F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{838D75D0-FE6A-458D-B40F-6BFFC116335F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F8FF1A-5FF5-401E-80A1-A27D59E44E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F8FF1A-5FF5-401E-80A1-A27D59E44E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F8FF1A-5FF5-401E-80A1-A27D59E44E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F8FF1A-5FF5-401E-80A1-A27D59E44E05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35780A3C-43B8-4BC4-AFB4-614C2AE6927C}
 	EndGlobalSection
 EndGlobal

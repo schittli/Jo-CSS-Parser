@@ -41,7 +41,9 @@
   <ItemGroup>
     <Compile Include="enums.cs" />
     <Compile Include="exception.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="ExtensionMethods_Strings.cs" />
+    <Compile Include="Parser\CssParser.cs" />
+    <Compile Include="Parser\CSSRuleSetParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stucts.cs" />
   </ItemGroup>
@@ -49,6 +51,7 @@
     <None Include="App.config" />
     <None Include="Class Diagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
