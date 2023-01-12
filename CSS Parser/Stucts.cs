@@ -14,9 +14,16 @@ namespace JoCssParser
         public string PropertyName;
         public string PropertyValue;
     };
+
+    /// <summary>
+    /// Saves a CSS Selector
+    /// and its CSS Declaration Block
+    /// </summary>
     struct TagWithCSS
     {
+        // In fact, this is the CSS Selector of a CSS Rule Set  
         public string TagName;
+        // all properties defines the CSS Declaration Block
         public List<Property> Properties;
     };
 }
